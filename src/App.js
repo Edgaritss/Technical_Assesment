@@ -1,30 +1,26 @@
-import React ,{useState,useEffect} from 'react'
+import Store from './components/Store';
+
 
 function App(){
+  const StoreItems = [{
+    title:"Computer",
+    price:100
+  },
+  {
+    title:"Mouse",
+    price:400
+  },
+  {
+    title:"TV",
+    price:600
+  }
 
-  const[data,setData] = useState([{}])
-
-  useEffect(()=>{
-    fetch("/members").then(
-      res => res.json()
-    ).then(
-      data => {
-        setData(data)
-        console.log(data)
-      }
-    )
-  },[])
+];
   return(
-    <div>
-      {(typeof data.members === 'undefined')? (
-        <p>Loading...</p>
-      ):(
-        data.members.map((member, i) => (
-          <p key={i}>{member} </p>
-        ))
-      )}
-    </div>
-  )
+  <div>
+    <Store items= {StoreItems}/>
+  </div>
+  );
 }
 
 export default App

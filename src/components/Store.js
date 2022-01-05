@@ -1,6 +1,10 @@
-import {Box,GridItem, Heading ,Center,Image,Stack,Button,Input,Text,Flex,Spacer,Tag,SimpleGrid,Spinner} from "@chakra-ui/react"
+import {Box,GridItem, Heading ,Center,Image,Button,Input,Tag,SimpleGrid,Spinner} from "@chakra-ui/react"
 import {useEffect, useRef, useState} from "react";
 import Header from "./Header";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import axios from 'axios';
+
+
 const StoreItem = ({title,price,image}) =>{
 
     return( <Box p={4} borderRadius="lg" borderWidth="1px">
@@ -14,14 +18,19 @@ const StoreItem = ({title,price,image}) =>{
     </Box>
     );
 };
+function Store({onItemAdd }) {
+    const[filteredItems,setFilteredItems] = useState([]);
+    const [storeItem,setStoreItem] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-function Store({ items ,loading ,onItemAdd }) {
-    const[filteredItems,setFilteredItems] = useState(items);
-
-    useEffect(()=> {
-        setFilteredItems(items);
-    },[items])
-
+    useEffect(() => {
+        axios.get('https://fakestoreapi.com/products').then(({data}) =>{
+          setStoreItem(data);
+          setLoading(false);
+          setFilteredItems(data);
+        })
+      }, []);
+      
     const itemNameRef = useRef();
     const itemPriceRef = useRef();
     return (
@@ -31,7 +40,7 @@ function Store({ items ,loading ,onItemAdd }) {
           <Box p={2}>
 
           <Input onChange={(e)=>{
-            let f = items.filter((item) => 
+            let f = storeItem.filter((item) => 
             item.title.toLowerCase().includes(e.target.value.toLocaleLowerCase())
             );
             console.log("F",f);
@@ -42,8 +51,10 @@ function Store({ items ,loading ,onItemAdd }) {
           <SimpleGrid columns={4} spacing={4} mt={4} p={2}>
         {filteredItems.map((item) => {
           return (
-            <GridItem>  
-                <StoreItem   {...item} />
+            <GridItem> 
+                 <Link to={`/product/${item.id}`}>
+                <StoreItem {...item} />
+                </Link>
             </GridItem>
         );
        })}

@@ -1,5 +1,5 @@
-import {Box, Heading ,Center,Image,Stack,Button,Input,Text,Flex,Spacer,Tag,SimpleGrid} from "@chakra-ui/react"
-import {useRef} from "react";
+import {Box,GridItem, Heading ,Center,Image,Stack,Button,Input,Text,Flex,Spacer,Tag,SimpleGrid} from "@chakra-ui/react"
+import {useEffect, useRef, useState} from "react";
 import Header from "./Header";
 const StoreItem = ({title,price,image}) =>{
 
@@ -7,7 +7,7 @@ const StoreItem = ({title,price,image}) =>{
         <Center>
         <Image src={image} w={24}/>
         </Center>
-        <Heading noOfLines={2} size="sm" fontWeight="normal">{title}</Heading>
+        <Heading mt={4} noOfLines={2} size="sm" fontWeight="normal">{title}</Heading>
         <Center>
         <Tag mt={4}>${price}</Tag>
         </Center>
@@ -16,19 +16,38 @@ const StoreItem = ({title,price,image}) =>{
 };
 
 function Store({ items , onItemAdd }) {
+    const[filteredItems,setFilteredItems] = useState(items);
+
+    useEffect(()=> {
+        setFilteredItems(items);
+    },[items])
+
     const itemNameRef = useRef();
     const itemPriceRef = useRef();
     return (
       <Box p={4}>
           <Header title="Edgar's Store"/>
+          <Box p={2}>
+
+          <Input onChange={(e)=>{
+            let f = items.filter((item) => 
+            item.title.toLowerCase().includes(e.target.value.toLocaleLowerCase())
+            );
+            console.log("F",f);
+            setFilteredItems(f);
+          }} 
+          placeholder="Search" mt={4}/>
 
           <SimpleGrid columns={4} spacing={4} mt={4} p={2}>
-        {items.map((item) => {
+        {filteredItems.map((item) => {
           return (
-            <StoreItem {...item} />
+            <GridItem>  
+                <StoreItem   {...item} />
+            </GridItem>
         );
        })}
        </SimpleGrid>
+       </Box>
        <Input ref={itemNameRef} mt={10} placeholder="Name"/>
        <Input ref= {itemPriceRef} mt={2} placeholder="Price " type="number"/>
        <Button onClick={() =>{

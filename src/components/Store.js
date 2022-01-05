@@ -1,13 +1,19 @@
-import {Box, Heading ,Stack,Button,Input,Text} from "@chakra-ui/react"
-
+import {Box, Heading ,Stack,Button,Input,Text,Flex,Spacer,Tag} from "@chakra-ui/react"
+import {useRef} from "react";
 const StoreItem = ({title,price}) =>{
-    return <Box p={4} borderRadius="lg" borderWidth="1px">
+    return( <Box p={4} borderRadius="lg" borderWidth="1px">
+        <Flex alignItems="center"> 
         <Heading size="md">{title}</Heading>
-        <Text>{price}</Text>
+        <Spacer />
+        <Tag>${price}</Tag>
+        </Flex> 
     </Box>
-}
+    );
+};
 
-function Store({ items }) {
+function Store({ items , onItemAdd }) {
+    const itemNameRef = useRef();
+    const itemPriceRef = useRef();
     return (
       <Box p={4}>
           <Stack>
@@ -17,8 +23,16 @@ function Store({ items }) {
         );
        })}
        </Stack>
-       <Input mt={10} placeholder="Search"/>
-       <Button mt={2}>Add Item</Button>
+       <Input ref={itemNameRef} mt={10} placeholder="Name"/>
+       <Input ref= {itemPriceRef} mt={2} placeholder="Price " type="number"/>
+       <Button onClick={() =>{
+           onItemAdd({
+               title:itemNameRef.current.value,
+               price:itemPriceRef.current.value
+
+           })
+
+       }} mt={2}>Add Item</Button>
       </Box>
         );
     }

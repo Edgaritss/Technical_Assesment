@@ -1,8 +1,9 @@
 import Store from './components/Store';
-
+import {useState} from "react";
 
 function App(){
-  const StoreItems = [{
+  const [storeItem,setStoreItem] = useState([
+  {
     title:"Computer",
     price:100
   },
@@ -14,11 +15,15 @@ function App(){
     title:"TV",
     price:600
   }
+]);
 
-];
+
   return(
   <div>
-    <Store items= {StoreItems}/>
+    <Store items= {storeItem} onItemAdd ={(itemData)=>{
+        setStoreItem([...storeItem, itemData]);
+    }}
+    />
   </div>
   );
 }

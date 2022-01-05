@@ -1,4 +1,4 @@
-import {Box,GridItem, Heading ,Center,Image,Stack,Button,Input,Text,Flex,Spacer,Tag,SimpleGrid} from "@chakra-ui/react"
+import {Box,GridItem, Heading ,Center,Image,Stack,Button,Input,Text,Flex,Spacer,Tag,SimpleGrid,Spinner} from "@chakra-ui/react"
 import {useEffect, useRef, useState} from "react";
 import Header from "./Header";
 const StoreItem = ({title,price,image}) =>{
@@ -15,7 +15,7 @@ const StoreItem = ({title,price,image}) =>{
     );
 };
 
-function Store({ items , onItemAdd }) {
+function Store({ items ,loading ,onItemAdd }) {
     const[filteredItems,setFilteredItems] = useState(items);
 
     useEffect(()=> {
@@ -27,6 +27,7 @@ function Store({ items , onItemAdd }) {
     return (
       <Box p={4}>
           <Header title="Edgar's Store"/>
+          {loading ? <Spinner/>:
           <Box p={2}>
 
           <Input onChange={(e)=>{
@@ -48,6 +49,7 @@ function Store({ items , onItemAdd }) {
        })}
        </SimpleGrid>
        </Box>
+    }
        <Input ref={itemNameRef} mt={10} placeholder="Name"/>
        <Input ref= {itemPriceRef} mt={2} placeholder="Price " type="number"/>
        <Button onClick={() =>{

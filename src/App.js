@@ -1,21 +1,16 @@
 import Store from './components/Store';
-import {useState} from "react";
+import {useState, useEffect} from "react";
+import axios from 'axios';
 
 function App(){
   const [storeItem,setStoreItem] = useState([
-  {
-    title:"Computer",
-    price:100
-  },
-  {
-    title:"Mouse",
-    price:400
-  },
-  {
-    title:"TV",
-    price:600
-  }
 ]);
+
+useEffect(() => {
+  axios.get('https://fakestoreapi.com/products').then(({data}) =>{
+    setStoreItem(data);
+  })
+}, [])
 
 
   return(

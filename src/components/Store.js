@@ -52,7 +52,7 @@ function Store({onItemAdd }) {
         {filteredItems.map((item) => {
           return (
             <GridItem> 
-                 <Link to={`/product/${item.id}`}>
+                 <Link to={ {pathname:`/product/${item.id}`, state:item,}}>
                 <StoreItem {...item} />
                 </Link>
             </GridItem>

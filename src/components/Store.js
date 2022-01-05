@@ -1,8 +1,13 @@
-import {Box,GridItem, Heading ,Center,Image,Button,Input,Tag,SimpleGrid,Spinner} from "@chakra-ui/react"
+import {Box,Stack,GridItem, Heading ,Center,Image,Button,Input,Tag,SimpleGrid,Spinner,StackDivider } from "@chakra-ui/react";
+
 import {useEffect, useRef, useState} from "react";
 import Header from "./Header";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from 'axios';
+import { Copyright } from './Copyright'
+import { Logo } from './Logo'
+import { SocialMediaLinks } from './SocialMediaLinks'
+
 
 
 const StoreItem = ({title,price,image}) =>{
@@ -18,7 +23,7 @@ const StoreItem = ({title,price,image}) =>{
     </Box>
     );
 };
-function Store({onItemAdd }) {
+function Store({items,onItemAdd }) {
     const[filteredItems,setFilteredItems] = useState([]);
     const [storeItem,setStoreItem] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -37,6 +42,7 @@ function Store({onItemAdd }) {
       <Box p={4}>
           <Header title="Edgar's Store"/>
           {loading ? <Spinner/>:
+
           <Box p={2}>
 
           <Input onChange={(e)=>{
@@ -68,10 +74,36 @@ function Store({onItemAdd }) {
                title:itemNameRef.current.value,
                price:itemPriceRef.current.value
 
-           })
+           });
 
        }} mt={2}>Add Item</Button>
+        <Box
+    as="footer"
+    role="contentinfo"
+    mx="auto"
+    maxW="7xl"
+    py="12"
+    px={{
+      base: '4',
+      md: '8',
+    }}
+  >
+    <Stack>
+      <Stack direction="row" spacing="4" align="stretch" justify="space-between">
+        <SocialMediaLinks />
+      </Stack>
+      <Copyright
+        alignSelf={{
+          base: 'center',
+          sm: 'start',
+        }}
+      />
+    </Stack>
+  </Box>
+       
       </Box>
         );
+        
     }
+
   export default Store;

@@ -1,11 +1,13 @@
 import Store from './components/Store';
-import {useState, useEffect} from "react";
-import {BrowserRouter as Router,Link,Routes} from "react-router-dom";
+import {useState} from "react";
+import {BrowserRouter as Router} from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
 import Product from "./components/Product";
 
 function App(){
-  const [storeItem,setStoreItem] = useState([]);
+  const [storeItem,setStoreItem] = useState([])
+
+
 
     return (
       <Router>

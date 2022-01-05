@@ -1,4 +1,6 @@
-import {Image, Heading,Box,Text ,Stack,HStack,Button, SimpleGrid,GridItem,Center,} from "@chakra-ui/react";
+import {Image, Heading,Box,Text,Tag ,Stack,HStack,Button, SimpleGrid,GridItem,Center,} from "@chakra-ui/react";
+
+import { FaFacebook } from "react-icons/fa";
 
 
 const Header = ({title}) => <Box p={4} shadow='md'>
@@ -25,12 +27,14 @@ function Product({location}){
                 </GridItem>
                 <GridItem colSpan={3}>
             <Stack spacing="4">
+                <Box>
                 <Heading>Price:${state.price}</Heading>
-                <Text fontSize="md">{state.category}</Text>
+                <Tag mt={2} as="i">{state.category}</Tag>
+                </Box>
                 <Text >{state.description}</Text>
                 <HStack>
                 <Button w="xs" size="sm" colorScheme="messenger">Buy Now</Button>
-                <Button w="xs" size="sm" colorScheme="pink" leftIcon={<FaFacebook />}></Button>\
+                <Button w="xs" size="sm" colorScheme='facebook' leftIcon={<FaFacebook />}></Button>
                 </HStack>
             </Stack>
             </GridItem>

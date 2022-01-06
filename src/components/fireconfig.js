@@ -1,5 +1,6 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from 'firebase/compat/app';
+import "firebase/compat/auth";
+
 const firebaseConfig = {
     apiKey: "AIzaSyAgAulbkyPVrua3MLe_sS9T59buEp2mAwU",
     authDomain: "prekiassesment.firebaseapp.com",
@@ -10,5 +11,6 @@ const firebaseConfig = {
 };
  // Initialize Firebase
   const fire = firebase.initializeApp(firebaseConfig);
-  const auth = fire.auth()
-  export {auth}
+
+
+  export {fire}

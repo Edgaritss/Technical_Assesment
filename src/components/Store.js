@@ -4,10 +4,8 @@ import {useEffect, useRef, useState} from "react";
 import Header from "./Header";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from 'axios';
-import { Copyright } from './Copyright'
-import { Logo } from './Logo'
-import { SocialMediaLinks } from './SocialMediaLinks'
-
+import { Copyright } from './JSX/Copyright';
+import { SocialMediaLinks } from './JSX/SocialMediaLinks';
 
 
 const StoreItem = ({title,price,image}) =>{
@@ -88,19 +86,13 @@ function Store({items,onItemAdd }) {
       md: '8',
     }}
   >
+
     <Stack>
       <Stack direction="row" spacing="4" align="stretch" justify="space-between">
         <SocialMediaLinks />
       </Stack>
-      <Copyright
-        alignSelf={{
-          base: 'center',
-          sm: 'start',
-        }}
-      />
     </Stack>
   </Box>
-       
       </Box>
         );
         

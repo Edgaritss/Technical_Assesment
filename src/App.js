@@ -3,6 +3,8 @@ import {useState} from "react";
 import {BrowserRouter as Router} from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
 import Product from "./components/Product";
+import Welcome from "./components/JSX/Welcome"
+import LoginPage from "./components/JSX/Login"
 
 function App(){
   const [storeItem,setStoreItem] = useState([])
@@ -20,12 +22,19 @@ function App(){
     }}
     />
       )}
-    />    
+    />
+      <Route path="/Welcome">
+        <Welcome/>
+      </Route >    
+      <Route path="/Login">
+        <LoginPage/>
+      </Route >     
     <Route path="/product/:id"  component={props => <Product {...props}/> }/>
         <Route>404 page</Route>
-        </Switch>
-      </Router>
+      </Switch>
+    </Router>
+   
     );
 }
 
-export default App
+export default App;

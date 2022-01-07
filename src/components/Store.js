@@ -1,4 +1,4 @@
-import {Box,Stack,GridItem, Heading ,Center,Image,Button,Input,Tag,SimpleGrid,Spinner,StackDivider } from "@chakra-ui/react";
+import {Box,Stack,GridItem, Heading ,Center,useColorMode,useColorModeValue,Image,Button,Input,Tag,SimpleGrid,Spinner,StackDivider } from "@chakra-ui/react";
 
 import {useEffect, useRef, useState} from "react";
 import Header from "./Header";
@@ -6,6 +6,12 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from 'axios';
 import { Copyright } from './JSX/Copyright';
 import { SocialMediaLinks } from './JSX/SocialMediaLinks';
+import{firebase} from './Login'
+import { fire } from './fireconfig';
+
+
+
+
 
 
 const StoreItem = ({title,price,image}) =>{
@@ -21,6 +27,7 @@ const StoreItem = ({title,price,image}) =>{
     </Box>
     );
 };
+
 function Store({items,onItemAdd }) {
     const[filteredItems,setFilteredItems] = useState([]);
     const [storeItem,setStoreItem] = useState([]);
@@ -36,6 +43,10 @@ function Store({items,onItemAdd }) {
       
     const itemNameRef = useRef();
     const itemPriceRef = useRef();
+    const signOut = () =>{
+      fire.auth().signOut();
+      console.log('Salimos' )
+    }
     return (
       <Box p={4}>
           <Header title="Edgar's Store"/>
@@ -65,16 +76,7 @@ function Store({items,onItemAdd }) {
        </SimpleGrid>
        </Box>
     }
-       <Input ref={itemNameRef} mt={10} placeholder="Name"/>
-       <Input ref= {itemPriceRef} mt={2} placeholder="Price " type="number"/>
-       <Button onClick={() =>{
-           onItemAdd({
-               title:itemNameRef.current.value,
-               price:itemPriceRef.current.value
 
-           });
-
-       }} mt={2}>Add Item</Button>
         <Box
     as="footer"
     role="contentinfo"
@@ -88,6 +90,7 @@ function Store({items,onItemAdd }) {
   >
 
     <Stack>
+      <Button onClick={signOut}>Log Out</Button>
       <Stack direction="row" spacing="4" align="stretch" justify="space-between">
         <SocialMediaLinks />
       </Stack>

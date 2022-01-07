@@ -6,6 +6,7 @@ import {
   Heading,
   Text,
   Button,
+  Link,
   Image,
   Icon,
   IconButton,
@@ -47,16 +48,17 @@ export default function CallToActionWithVideo() {
             </Text>
             <br />
             <Text as={'span'} color={'green.300'}>
-              Anytime, Anywhere
+              Commitment, 
             </Text>
           </Heading>
           <Text color={'gray.500'}>
             Welcome everyone to the best online store.
-            My name is Edgar Rojas and im very excited to present my technical assesment for you!
+            My name is Edgar Rojas and im very excited to present my technical assesment to you!
           </Text>
           <Stack
             spacing={{ base: 4, sm: 6 }}
             direction={{ base: 'column', sm: 'row' }}>
+              <Link href='./Login'>
             <Button 
               rounded={'full'}
               size={'lg'}
@@ -67,6 +69,7 @@ export default function CallToActionWithVideo() {
               _hover={{ bg: 'green.500' }}>
               Get started
             </Button>
+            </Link>
             <Button
               onClick={toggleColorMode}
               rounded={'full'}
@@ -104,7 +107,6 @@ export default function CallToActionWithVideo() {
               aria-label={'Play Button'}
               variant={'ghost'}
               _hover={{ bg: 'transparent' }}
-              icon={<PlayIcon w={12} h={12} />}
               size={'lg'}
               color={'white'}
               position={'absolute'}

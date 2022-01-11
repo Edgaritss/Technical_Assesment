@@ -1,5 +1,5 @@
 
-import {Flex,Heading,Input,Button,useColorMode,Link ,ButtonGroup ,useColorModeValue} from '@chakra-ui/react';
+import {Flex,Heading,Input,Button,useColorMode,Link  ,useColorModeValue} from '@chakra-ui/react';
 import {ArrowBackIcon } from '@chakra-ui/icons'
 import {useState} from "react";
 import { fire } from '../fireconfig';
@@ -20,7 +20,7 @@ const LoginPage =() =>{
         fire.auth().createUserWithEmailAndPassword(email,pass)
         .then((res) =>{ alert('Succesfully created')  })
         
-    }
+    } /* Registrar usuario con Correo y contraseña*/
 
   
 
@@ -32,7 +32,7 @@ const LoginPage =() =>{
         })
         .catch((err) =>{
             console.log(err);
-    })
+    }) /* Registrar usuario con Google*/
 }
 
     return(
@@ -40,9 +40,9 @@ const LoginPage =() =>{
         <Flex direction="column" background={formBackground} p={8} rounded={6}>
             <Heading textAlign="center" mb={6}>Log in</Heading>
             <Input onChange={(e) => {setEmail(e.target.value)}} placeholder="Edgar@edgar.com" variant="filled" mb={3} type="email"/>
-
+           
             <Input onChange={(e) => {setPass(e.target.value)}}  placeholder="******" variant="filled" mb={6} type="password"/>
-
+  
             <Button mt={2} onClick={registerUser} colorScheme="teal" >Log in</Button>
             <Button mt={2} onClick={SignInWithFirebase} colorScheme="blue" >Google</Button>
    

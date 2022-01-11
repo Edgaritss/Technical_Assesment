@@ -44,11 +44,11 @@ export default function CallToActionWithVideo() {
                 bg: 'green.300',
                 zIndex: -1,
               }}>
-              Edgar's Store,
+              Edgar's Store.
             </Text>
             <br />
             <Text as={'span'} color={'green.300'}>
-              Commitment, 
+              The one and only
             </Text>
           </Heading>
           <Text color={'gray.500'}>
@@ -115,13 +115,13 @@ export default function CallToActionWithVideo() {
               transform={'translateX(-50%) translateY(-50%)'}
             />
             <Image
-              alt={'Hero Image'}
+              alt={'Edgarits'}
               fit={'cover'}
               align={'center'}
               w={'100%'}
               h={'100%'}
               src={
-                'https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'
+                'https://images.unsplash.com/photo-1562813733-b31f71025d54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80'
               }
             />
           </Box>

@@ -1,6 +1,6 @@
 import {Image, Heading,Box,Text,Tag ,Stack,HStack,Button, SimpleGrid,GridItem,Center,} from "@chakra-ui/react";
 
-import { FaFacebook } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 
 
 const Header = ({title}) => <Box p={4} shadow='md'>
@@ -33,8 +33,8 @@ function Product({location}){
                 </Box>
                 <Text >{state.description}</Text>
                 <HStack>
-                <Button w="xs" size="sm" colorScheme="messenger">Buy Now</Button>
-                <Button w="xs" size="sm" colorScheme='facebook' leftIcon={<FaFacebook />}></Button>
+                <Button as="a" href="https://fakestoreapi.com/" w="xs" size="sm" colorScheme="messenger">Buy Now</Button>
+                <Button as="a" href="https://github.com/Edgaritss" w="xs" size="sm" colorScheme='facebook' leftIcon={<FaGithub />}></Button>
                 </HStack>
             </Stack>
             </GridItem>
